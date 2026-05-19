@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgb(198, 189, 252);
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 1rem;
+	min-height: 70px;
+}
+
+button {
+	cursor: pointer;
+	border-radius: 14px;
+	padding: 12px 20px;
+	background-color: violet;
+	font-weight: 700;
+}
+
+button:hover {
+	background-color: rgb(206, 135, 206);
+}
