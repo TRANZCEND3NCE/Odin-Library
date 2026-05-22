@@ -16,14 +16,87 @@ header {
 	min-height: 70px;
 }
 
-button {
+#openFormBtn {
 	cursor: pointer;
 	border-radius: 14px;
 	padding: 12px 20px;
 	background-color: violet;
 	font-weight: 700;
+	font-size: 0.83rem;
+	transition: 0.3s;
 }
 
-button:hover {
+#openFormBtn:hover {
 	background-color: rgb(206, 135, 206);
+}
+
+
+
+
+dialog {
+	border: none;
+	border-radius: 8px;
+	padding: 30px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+	width: 350px;
+	/* Center the dialog */
+	inset: 0;
+	margin: auto;
+	position: fixed;
+}
+
+dialog form h2 {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+dialog::backdrop {
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(2px);
+}
+
+#formBook {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.form-info {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.form-info label {
+	font-weight: bold;
+}
+
+.form-info input {
+	padding: 8px;
+	border: 1px solid rgb(219, 213, 213);
+	border-radius: 4px;
+}
+
+.form-buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.form-buttons button {
+	flex: 1;
+	padding: 10px;
+	/* border: none; */
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+#cancelBtn {
+    background-color: #95a5a6;
+    color: white;
+}
+
+#submitBtn {
+    background-color: violet;
+    color: white;
 }
