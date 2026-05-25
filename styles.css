@@ -32,6 +32,11 @@ header {
 	background-color: rgb(206, 135, 206);
 }
 
+#book-container {
+
+}
+
+
 /* DIALOG */
 dialog {
 	border: none;
@@ -200,4 +205,12 @@ dialog[open] {
 #submitBtn {
     background-color: violet;
     color: white;
+}
+
+#cancelBtn:hover {
+	background-color: rgb(145, 145, 145);
+}
+
+#submitBtn:hover {
+  background-color: rgb(206, 135, 206);
 }
