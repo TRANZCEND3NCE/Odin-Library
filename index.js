@@ -3,6 +3,12 @@ const dialogBook = document.querySelector("#dialogBook");
 const formBook = document.querySelector("#formBook");
 const cancelBtn = document.querySelector("#cancelBtn");
 
+// FORM INPUTS
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pageNumber");
+const readInput = document.querySelector("#checkRead");
+
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -18,8 +24,9 @@ Book.prototype.toggleReadStatus = function () {
 	this.read = !this.read;
 }
 
+// DISPLAY BOOK
 function displayBook() {
-	const bookContainer = document.querySelector("book-container");
+	const bookContainer = document.querySelector("#book-container");
 	if (!bookContainer) return;
 
 	bookContainer.innerHTML = '';
@@ -29,7 +36,7 @@ function displayBook() {
 		bookCard.classList.add("book-card");
 		bookCard.setAttribute("data-index", index);
 
-		bookCard.innerHtml = `
+		bookCard.innerHTML = `
 			<h3>${book.title}</h3>
 			<p>Author: ${book.author}</p>
 			<p>Pages: ${book.pages}</p>
@@ -41,13 +48,13 @@ function displayBook() {
 		`;
 
 		bookCard.querySelector('.remove-btn').addEventListener('click', () => {
-	removeBook(index);
-});
+	    removeBook(index);
+  });
 
-bookCard.querySelector('.toggle-read-btn').addEventListener('click', () => {
-	book.toggleReadStatus();
-	displayBook();
-});
+    bookCard.querySelector('.toggle-read-btn').addEventListener('click', () => {
+	    book.toggleReadStatus();
+	    displayBook();
+  });
 
 		bookContainer.appendChild(bookCard);
 	});
@@ -60,42 +67,47 @@ function addBookToLibrary(title, author, pages, read) {
 	displayBook();
 }
 
-//REMOVE BOOK FROM LIBRARY
+// REMOVE BOOK FROM LIBRARY
 function removeBook(index) {
 	myLibrary.splice(index, 1);
 	displayBook();
 }
 
 
-//EVENT LISTENERS
+// OPEN DIALOG
 if (openFormBtn && dialogBook) {
 	openFormBtn.addEventListener('click', () => {
 		dialogBook.showModal();
 	})
 };
 
+// CLOSE DIALOG
 if (cancelBtn && dialogBook) {
 	cancelBtn.addEventListener('click', () => {
 		dialogBook.close();
 	});
 }
 
+// SUBMIT FORM
 if (formBook) {
 	formBook.addEventListener('submit', (e) => {
 		e.preventDefault();
 
-		const title = document.querySelector("title").value;
-		const author = document.querySelector("author").value;
-		const pages = document.querySelector("pages").value;
-		const read = document.querySelector("read").checked;
+		const title = titleInput.value;
+		const author = authorInput.value;
+		const pages = pagesInput.value;
+		const read = readInput.checked;
 
 		addBookToLibrary(title, author, pages, read);
 
 		formBook.reset();
+
 		if (dialogBook) dialogBook.close();
 	});
 }
 
-
-
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, true)
+// PRE ADDED BOOKS
+addBookToLibrary('Becoming Supernatural', 'Joe Dispenza', 384, true);
+addBookToLibrary('The Power of Now', 'Eckhart Tolle', 256, true);
+addBookToLibrary('Project 369', 'David Kasneci', 362, true);
+addBookToLibrary('The Beauty of Your Existence', 'Rumi Bumi', 265, true);

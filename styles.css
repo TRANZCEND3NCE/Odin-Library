@@ -8,6 +8,10 @@ body {
 	background-color: rgb(198, 189, 252);
 }
 
+main {
+	padding: 20px;
+}
+
 /* HEADER */
 header {
 	display: flex;
@@ -15,6 +19,8 @@ header {
 	align-items: center;
 	padding: 0 1rem;
 	min-height: 70px;
+	background-color: rgb(167, 159, 211);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* ADD BUTTON */
@@ -32,10 +38,81 @@ header {
 	background-color: rgb(206, 135, 206);
 }
 
+/* BOOK GRID */
 #book-container {
-
+  display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 20px;
 }
 
+/* BOOK CARD */
+.book-card {
+	background-color: rgb(248, 248, 248);
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	text-align: center;
+}
+
+.book-card h3 {
+	background-color: rgb(167, 159, 211);
+	padding: 5px;
+	border-radius: 5px;
+}
+
+/* CARD BUTTONS */
+.card-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.card-buttons button {
+	width: 120px;
+	padding: 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 700;
+	transition: 0.3s;
+}
+
+.card-buttons .status-read:hover {
+	background-color: rgb(22, 185, 131);
+}
+
+.card-buttons .status-unread:hover {
+	background-color: rgb(224, 149, 9);
+}
+
+.card-buttons .remove-btn:hover {
+	background-color: rgb(230, 96, 96);
+}
+
+.status-read {
+	background-color:rgb(23, 199, 140);
+}
+
+.status-unread {
+	background-color: rgb(241, 160, 7);
+}
+
+.text-read {
+	color: rgb(23, 199, 140);
+	font-weight: 700;
+}
+
+.text-unread {
+	color: rgb(224, 149, 9);
+	font-weight: 700;
+}
+
+.remove-btn {
+	background-color: rgb(255, 108, 108);
+}
 
 /* DIALOG */
 dialog {
@@ -67,7 +144,7 @@ dialog[open] {
 @keyframes fadeIn {
 	from {
 		opacity: 0;
-		transform: translateY(-15) scale(0.95);
+		transform: translateY(-15px) scale(0.95);
 	}
 
 	to {
