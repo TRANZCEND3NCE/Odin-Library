@@ -2,6 +2,7 @@ const openFormBtn = document.querySelector("#openFormBtn");
 const dialogBook = document.querySelector("#dialogBook");
 const formBook = document.querySelector("#formBook");
 const cancelBtn = document.querySelector("#cancelBtn");
+const bookContainer = document.querySelector("#book-container");
 
 // FORM INPUTS
 const titleInput = document.querySelector("#title");
@@ -10,7 +11,7 @@ const pagesInput = document.querySelector("#pageNumber");
 const readInput = document.querySelector("#checkRead");
 
 // LIBRARY ARRAY FOR STORING BOOKS
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
 	this.title = title;
@@ -27,15 +28,15 @@ Book.prototype.toggleReadStatus = function () {
 
 // DISPLAY BOOK
 function displayBook() {
-	const bookContainer = document.querySelector("#book-container");
+
 	if (!bookContainer) return;
 
 	bookContainer.innerHTML = '';
 
-	myLibrary.forEach((book, index) => {
+	myLibrary.forEach((book) => {
 		const bookCard = document.createElement("div");
 		bookCard.classList.add("book-card");
-		bookCard.setAttribute("data-index", index);
+		bookCard.dataset.id = book.id;
 
 		bookCard.innerHTML = `
 			<h3>${book.title}</h3>
@@ -54,7 +55,7 @@ function displayBook() {
   });
 
 		bookCard.querySelector('.remove-btn').addEventListener('click', () => {
-	    removeBook(index);
+	    removeBook(book.id);
   });
 
 		bookContainer.appendChild(bookCard);
@@ -69,8 +70,8 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 // REMOVE BOOK FROM LIBRARY
-function removeBook(index) {
-	myLibrary.splice(index, 1);
+function removeBook(id) {
+	myLibrary = myLibrary.filter(book => book.id !== id);
 	displayBook();
 }
 
