@@ -9,6 +9,7 @@ const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pageNumber");
 const readInput = document.querySelector("#checkRead");
 
+// LIBRARY ARRAY FOR STORING BOOKS
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -47,13 +48,13 @@ function displayBook() {
 			</div>
 		`;
 
-		bookCard.querySelector('.remove-btn').addEventListener('click', () => {
-	    removeBook(index);
-  });
-
     bookCard.querySelector('.toggle-read-btn').addEventListener('click', () => {
 	    book.toggleReadStatus();
 	    displayBook();
+  });
+
+		bookCard.querySelector('.remove-btn').addEventListener('click', () => {
+	    removeBook(index);
   });
 
 		bookContainer.appendChild(bookCard);
