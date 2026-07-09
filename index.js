@@ -10,21 +10,20 @@ const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pageNumber");
 const readInput = document.querySelector("#checkRead");
 
-// LIBRARY ARRAY FOR STORING BOOKS
-let myLibrary = [];
+// BOOK CLASS
+class Book {
+	constructor(title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+		this.id = crypto.randomUUID();
+	}
 
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-	this.id = crypto.randomUUID();
-}
-
-// TOGGLE READ STATUS
-Book.prototype.toggleReadStatus = function () {
-	this.read = !this.read;
-}
+	toggleReadStatus() {
+		this.read = !this.read;
+	}
+};
 
 // DISPLAY BOOK
 function displayBook() {
