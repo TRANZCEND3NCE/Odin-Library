@@ -50,12 +50,11 @@ const myLibrary = new Library();
 
 // DISPLAY BOOK
 function displayBook() {
-
 	if (!bookContainer) return;
 
-	bookContainer.innerHTML = '';
+	bookContainer.innerHTML = "";
 
-	myLibrary.forEach((book) => {
+	myLibrary.getBooks().forEach((book) => {
 		const bookCard = document.createElement("div");
 		bookCard.classList.add("book-card");
 		bookCard.dataset.id = book.id;
@@ -77,44 +76,31 @@ function displayBook() {
   });
 
 		bookCard.querySelector('.remove-btn').addEventListener('click', () => {
-	    removeBook(book.id);
+			myLibrary.removeBook(book.id);
+	    displayBook();
   });
 
 		bookContainer.appendChild(bookCard);
 	});
-}
-
-// ADD BOOK TO LIBRARY
-function addBookToLibrary(title, author, pages, read) {
-	const newBook = new Book(title, author, pages, read);
-	myLibrary.push(newBook);
-	displayBook();
-}
-
-// REMOVE BOOK FROM LIBRARY
-function removeBook(id) {
-	myLibrary = myLibrary.filter(book => book.id !== id);
-	displayBook();
-}
-
+};
 
 // OPEN DIALOG
 if (openFormBtn && dialogBook) {
-	openFormBtn.addEventListener('click', () => {
+	openFormBtn.addEventListener("click", () => {
 		dialogBook.showModal();
-	})
+	});
 };
 
 // CLOSE DIALOG
 if (cancelBtn && dialogBook) {
-	cancelBtn.addEventListener('click', () => {
+	cancelBtn.addEventListener("click", () => {
 		dialogBook.close();
 	});
-}
+};
 
 // SUBMIT FORM
 if (formBook) {
-	formBook.addEventListener('submit', (e) => {
+	formBook.addEventListener("submit", (e) => {
 		e.preventDefault();
 
 		const title = titleInput.value;
@@ -122,16 +108,19 @@ if (formBook) {
 		const pages = pagesInput.value;
 		const read = readInput.checked;
 
-		addBookToLibrary(title, author, pages, read);
+		myLibrary.addBook(title, author, pages, read);
+		displayBook();
 
 		formBook.reset();
 
 		if (dialogBook) dialogBook.close();
 	});
-}
+};
 
 // PRE ADDED BOOKS
-addBookToLibrary('Becoming Supernatural', 'Joe Dispenza', 384, true);
-addBookToLibrary('The Power of Now', 'Eckhart Tolle', 256, true);
-addBookToLibrary('Project 369', 'David Kasneci', 362, true);
-addBookToLibrary('The Beauty of Your Existence', 'Rumi Bumi', 265, true);
+myLibrary.addBook('Becoming Supernatural', 'Joe Dispenza', 384, true);
+myLibrary.addBook('The Power of Now', 'Eckhart Tolle', 256, true);
+myLibrary.addBook('Project 369', 'David Kasneci', 362, true);
+myLibrary.addBook('The Beauty of Your Existence', 'Rumi Bumi', 265, true);
+
+displayBook();
