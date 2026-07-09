@@ -25,6 +25,29 @@ class Book {
 	}
 };
 
+// LIBRARY CLASS
+class Library {
+	constructor() {
+		this.books = [];
+	}
+
+	addBook(title, author, pages, read) {
+		const newBook = new Book(title, author, pages, read);
+		this.books.push(newBook);
+	}
+
+	removeBook(id) {
+		this.books = this.books.filter((book) => book.id !== id);
+	}
+
+	getBooks() {
+		return this.books;
+	}
+};
+
+// CREATE LIBRARY INSTANCE
+const myLibrary = new Library();
+
 // DISPLAY BOOK
 function displayBook() {
 
